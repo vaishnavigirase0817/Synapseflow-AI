@@ -7,7 +7,7 @@
 SynapseFlow AI is a premium, production-ready SaaS landing page built for high performance, accessibility, and exceptional user experience. Designed with a modern "AI Control Room" aesthetic, it features complex UI components like a responsive Bento Grid, a dynamic Pricing Engine, and an Interactive Dashboard Preview.
 
 ## 🚀 Live Demo
-*(Insert Vercel Deployment Link Here)*
+*[(https://courageous-gnome-dd419e.netlify.app/)*
 
 ## ✨ Features
 
