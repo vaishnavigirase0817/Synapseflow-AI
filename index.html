@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- SEO: Title & Description -->
+    <title>SynapseFlow AI — Automate. Analyze. Accelerate.</title>
+    <meta name="description" content="Transform scattered business data into intelligent automated workflows powered by AI. SynapseFlow AI helps teams automate, analyze, and accelerate their operations." />
+    <meta name="keywords" content="AI automation, business workflows, data analytics, AI dashboard, SaaS, machine learning" />
+    <meta name="author" content="SynapseFlow AI" />
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://synapseflow.ai/" />
+
+    <!-- Favicon placeholder — replace with actual favicon -->
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
+    <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
+
+    <!-- OpenGraph Tags -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="SynapseFlow AI — Automate. Analyze. Accelerate." />
+    <meta property="og:description" content="Transform scattered business data into intelligent automated workflows powered by AI." />
+    <meta property="og:image" content="https://synapseflow.ai/assets/og-image.png" />
+    <meta property="og:url" content="https://synapseflow.ai/" />
+    <meta property="og:site_name" content="SynapseFlow AI" />
+
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="SynapseFlow AI — Automate. Analyze. Accelerate." />
+    <meta name="twitter:description" content="Transform scattered business data into intelligent automated workflows powered by AI." />
+    <meta name="twitter:image" content="https://synapseflow.ai/assets/twitter-card.png" />
+
+    <!-- Robots -->
+    <meta name="robots" content="index, follow" />
+
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#0A0E1A" />
+
+    <!-- Google Fonts: Preconnect + Load -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "SynapseFlow AI",
+      "operatingSystem": "Web",
+      "applicationCategory": "BusinessApplication",
+      "offers": {
+        "@type": "Offer",
+        "price": "29.00",
+        "priceCurrency": "USD"
+      },
+      "description": "Transform scattered business data into intelligent automated workflows powered by AI.",
+      "url": "https://synapseflow.ai",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "2400"
+      }
+    }
+    </script>
+
+    <style>
+      /* Initial Loading Screen CSS */
+      #initial-loader {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        background-color: #0A0E1A;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+      }
+      .loader-ring {
+        width: 48px;
+        height: 48px;
+        border: 3px solid rgba(99, 102, 241, 0.2);
+        border-top-color: #6366F1;
+        border-radius: 50%;
+        animation: loader-spin 1s linear infinite;
+      }
+      @keyframes loader-spin {
+        to { transform: rotate(360deg); }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="initial-loader" aria-hidden="true">
+      <div class="loader-ring"></div>
+    </div>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+    <script>
+      // Remove loader when React mounts
+      window.addEventListener('load', () => {
+        const loader = document.getElementById('initial-loader');
+        if (loader) {
+          loader.style.opacity = '0';
+          loader.style.visibility = 'hidden';
+          setTimeout(() => loader.remove(), 500);
+        }
+      });
+    </script>
+  </body>
+</html>
