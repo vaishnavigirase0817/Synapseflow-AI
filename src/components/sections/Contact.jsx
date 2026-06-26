@@ -1,14 +1,13 @@
 import { useState } from 'react';
 import ScrollReveal from '../common/ScrollReveal';
 import SectionHeading from '../common/SectionHeading';
-import RippleButton from '../common/RippleButton';
 
 /**
  * Contact — Contact form section with glass styling and input validation.
  */
 export default function Contact() {
   const [formData, setFormData] = useState({ name: '', email: '', company: '', message: '' });
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState('idle'); // 'idle' | 'loading' | 'success'
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -17,8 +16,11 @@ export default function Contact() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setSubmitted(true);
-    // Form submission logic would go here
+    setStatus('loading');
+    // Simulate network request
+    setTimeout(() => {
+      setStatus('success');
+    }, 1500);
   };
 
   const inputClasses = `
@@ -28,6 +30,7 @@ export default function Contact() {
     focus:outline-none focus:ring-2 focus:ring-primary-400/50 focus:border-primary-400/30
     hover:border-white/15
     transition-all duration-300
+    disabled:opacity-50 disabled:cursor-not-allowed
   `;
 
   return (
@@ -49,8 +52,24 @@ export default function Contact() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
           {/* Form */}
           <ScrollReveal delay={100}>
-            <div className="glass rounded-2xl p-6 sm:p-8">
-              {!submitted ? (
+            <div className="glass rounded-2xl p-6 sm:p-8 min-h-[480px] flex flex-col justify-center">
+              {status === 'success' ? (
+                <div className="text-center py-12 animate-fade-in">
+                  <div className="w-16 h-16 rounded-full bg-glow-emerald/10 flex items-center justify-center mx-auto mb-4">
+                    <svg className="w-8 h-8 text-glow-emerald" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                  </div>
+                  <h3 className="font-display font-semibold text-xl text-white mb-2">Message Sent!</h3>
+                  <p className="text-sm text-white/50">We'll get back to you within 24 hours.</p>
+                  <button 
+                    onClick={() => { setStatus('idle'); setFormData({ name: '', email: '', company: '', message: '' }); }}
+                    className="mt-6 px-4 py-2 text-xs font-medium text-white/50 hover:text-white transition-colors border border-white/10 hover:bg-white/[0.05] rounded-lg"
+                  >
+                    Send another message
+                  </button>
+                </div>
+              ) : (
                 <form onSubmit={handleSubmit} className="space-y-5" noValidate>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
@@ -68,6 +87,7 @@ export default function Contact() {
                         className={inputClasses}
                         autoComplete="name"
                         aria-required="true"
+                        disabled={status === 'loading'}
                       />
                     </div>
                     <div>
@@ -84,6 +104,7 @@ export default function Contact() {
                         className={inputClasses}
                         autoComplete="email"
                         aria-required="true"
+                        disabled={status === 'loading'}
                       />
                     </div>
                   </div>
@@ -100,6 +121,7 @@ export default function Contact() {
                       onChange={handleChange}
                       className={inputClasses}
                       autoComplete="organization"
+                      disabled={status === 'loading'}
                     />
                   </div>
 
@@ -117,31 +139,37 @@ export default function Contact() {
                       onChange={handleChange}
                       className={`${inputClasses} resize-none`}
                       aria-required="true"
+                      disabled={status === 'loading'}
                     />
                   </div>
 
                   <button 
                     type="submit"
-                    className="w-full relative overflow-hidden rounded-xl font-medium transition-all duration-300 bg-primary-600 text-white hover:bg-primary-500 shadow-lg shadow-primary-500/25 px-6 py-3 flex items-center justify-center gap-2"
+                    disabled={status === 'loading'}
+                    className={`w-full relative overflow-hidden rounded-xl font-medium transition-all duration-300 shadow-lg px-6 py-3 flex items-center justify-center gap-2 ${
+                      status === 'loading' ? 'bg-primary-500/50 text-white/70 shadow-none cursor-not-allowed' : 'bg-primary-600 text-white hover:bg-primary-500 shadow-primary-500/25'
+                    }`}
                     aria-label="Send message"
                   >
-                    Send Message
-                    <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <line x1="22" y1="2" x2="11" y2="13" />
-                      <polygon points="22 2 15 22 11 13 2 9 22 2" />
-                    </svg>
+                    {status === 'loading' ? (
+                      <>
+                        <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" fill="none" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        Sending...
+                      </>
+                    ) : (
+                      <>
+                        Send Message
+                        <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <line x1="22" y1="2" x2="11" y2="13" />
+                          <polygon points="22 2 15 22 11 13 2 9 22 2" />
+                        </svg>
+                      </>
+                    )}
                   </button>
                 </form>
-              ) : (
-                <div className="text-center py-12">
-                  <div className="w-16 h-16 rounded-full bg-glow-emerald/10 flex items-center justify-center mx-auto mb-4">
-                    <svg className="w-8 h-8 text-glow-emerald" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <polyline points="20 6 9 17 4 12" />
-                    </svg>
-                  </div>
-                  <h3 className="font-display font-semibold text-xl text-white mb-2">Message Sent!</h3>
-                  <p className="text-sm text-white/50">We'll get back to you within 24 hours.</p>
-                </div>
               )}
             </div>
           </ScrollReveal>

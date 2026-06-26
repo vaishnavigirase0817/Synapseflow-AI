@@ -8,84 +8,80 @@ import RippleButton from '../common/RippleButton';
  * @param {Object} props
  * @param {boolean} props.isOpen - Whether the menu is visible
  * @param {Function} props.onClose - Callback to close the menu
- * @param {Array<{label: string, href: string}>} props.links - Navigation links
+ * @param {Array<{label: string, id: string}>} props.links - Navigation links
  */
 export default function MobileMenu({ isOpen, onClose, links }) {
-  const menuRef = useRef(null);
-  const firstFocusableRef = useRef(null);
-
-  // Close on Escape
   useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (e.key === 'Escape' && isOpen) {
-        onClose();
-      }
+    const handleEscape = (e) => {
+      if (e.key === 'Escape') onClose();
     };
-
-    document.addEventListener('keydown', handleKeyDown);
-    return () => document.removeEventListener('keydown', handleKeyDown);
+    if (isOpen) {
+      document.addEventListener('keydown', handleEscape);
+    }
+    return () => document.removeEventListener('keydown', handleEscape);
   }, [isOpen, onClose]);
 
-  // Focus trap: focus first link when menu opens
-  useEffect(() => {
-    if (isOpen && firstFocusableRef.current) {
-      setTimeout(() => firstFocusableRef.current?.focus(), 100);
-    }
-  }, [isOpen]);
+  const handleLinkClick = (e, id) => {
+    scrollToSection(e, id);
+    onClose();
+  };
 
   return (
-    <div
-      id="mobile-menu"
-      className={`
-        fixed inset-0 z-40 lg:hidden
-        transition-all duration-500 ease-out
-        ${isOpen ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'}
-      `}
-      role="dialog"
-      aria-modal="true"
-      aria-label="Mobile navigation menu"
-    >
-      {/* Backdrop */}
+    <>
+      {/* Backdrop overlay */}
       <div
-        className="absolute inset-0 bg-surface-500/90 backdrop-blur-2xl"
-        onClick={onClose}
+        className={`fixed inset-0 z-40 bg-surface-500/80 backdrop-blur-sm transition-opacity duration-300 lg:hidden ${
+          isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
+        }`}
         aria-hidden="true"
+        onClick={onClose}
       />
 
-      {/* Menu content */}
-      <nav
-        ref={menuRef}
-        className={`
-          relative flex flex-col items-center justify-center h-full gap-2
-          transition-all duration-500 ease-out
-          ${isOpen ? 'translate-y-0 opacity-100' : '-translate-y-8 opacity-0'}
-        `}
+      {/* Menu panel */}
+      <div
+        className={`fixed top-16 right-4 left-4 z-40 p-4 rounded-2xl glass-strong border border-white/[0.08] shadow-2xl shadow-black/50 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] lg:hidden ${
+          isOpen
+            ? 'translate-y-0 opacity-100 scale-100 pointer-events-auto'
+            : '-translate-y-8 opacity-0 scale-95 pointer-events-none'
+        }`}
+        id="mobile-menu"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Mobile navigation"
       >
-        {links.map((link, i) => (
-          <a
-            key={link.label}
-            ref={i === 0 ? firstFocusableRef : undefined}
-            href={link.href}
-            onClick={onClose}
-            className="
-              px-6 py-4 rounded-xl
-              text-2xl font-display font-medium text-white/70
-              hover:text-white hover:bg-white/[0.05]
-              transition-all duration-300
-              w-64 text-center
-            "
-            style={{ transitionDelay: isOpen ? `${i * 75}ms` : '0ms' }}
-          >
-            {link.label}
-          </a>
-        ))}
+        <div className="flex flex-col gap-2">
+          {links.map((link, i) => (
+            <a
+              key={link.label}
+              href={`#${link.id}`}
+              onClick={(e) => handleLinkClick(e, link.id)}
+              className="px-4 py-3 rounded-xl text-base font-medium text-white hover:bg-white/[0.06] transition-colors"
+              style={{
+                transitionDelay: isOpen ? `${i * 50}ms` : '0ms',
+                transform: isOpen ? 'translateY(0)' : 'translateY(10px)',
+                opacity: isOpen ? 1 : 0,
+              }}
+            >
+              {link.label}
+            </a>
+          ))}
 
-        <div className="mt-6" style={{ transitionDelay: isOpen ? `${links.length * 75}ms` : '0ms' }}>
-          <RippleButton variant="primary" ariaLabel="Start free trial" onClick={onClose}>
-            Start Free Trial
-          </RippleButton>
+          <div
+            className="pt-4 pb-2 mt-2 border-t border-white/[0.06]"
+            style={{
+              transitionDelay: isOpen ? `${links.length * 50}ms` : '0ms',
+              transform: isOpen ? 'translateY(0)' : 'translateY(10px)',
+              opacity: isOpen ? 1 : 0,
+              transitionProperty: 'transform, opacity',
+              transitionDuration: '500ms',
+            }}
+          >
+            <RippleButton variant="primary" className="w-full justify-center" onClick={(e) => handleLinkClick(e, 'pricing')}>
+              Start Free Trial
+            </RippleButton>
+          </div>
         </div>
-      </nav>
-    </div>
+      </div>
+    </>
   );
 }

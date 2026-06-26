@@ -1,13 +1,15 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import { useScrollPosition } from '../../hooks/useScrollPosition';
+import { useActiveSection, scrollToSection } from '../../hooks/useActiveSection';
 import MobileMenu from './MobileMenu';
 import RippleButton from '../common/RippleButton';
 
 const NAV_LINKS = [
-  { label: 'Features', href: '#features' },
-  { label: 'Pricing', href: '#pricing' },
-  { label: 'About', href: '#about' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Features', id: 'features' },
+  { label: 'Dashboard', id: 'dashboard' },
+  { label: 'Pricing', id: 'pricing' },
+  { label: 'FAQ', id: 'faq' },
+  { label: 'Contact', id: 'contact' },
 ];
 
 /**
@@ -18,6 +20,9 @@ export default function Navbar() {
   const scrollY = useScrollPosition();
   const [mobileOpen, setMobileOpen] = useState(false);
   const isScrolled = scrollY > 20;
+  
+  const sectionIds = useMemo(() => NAV_LINKS.map(link => link.id), []);
+  const activeSection = useActiveSection(sectionIds);
 
   // Lock body scroll when mobile menu is open
   useEffect(() => {
@@ -32,6 +37,11 @@ export default function Navbar() {
   const closeMobile = useCallback(() => {
     setMobileOpen(false);
   }, []);
+
+  const handleNavClick = (e, id) => {
+    scrollToSection(e, id);
+    if (mobileOpen) setMobileOpen(false);
+  };
 
   return (
     <>
@@ -53,6 +63,7 @@ export default function Navbar() {
           {/* Logo */}
           <a
             href="/"
+            onClick={(e) => scrollToSection(e, 'hero')}
             className="flex items-center gap-2.5 group"
             aria-label="SynapseFlow AI - Home"
           >
@@ -83,25 +94,33 @@ export default function Navbar() {
 
           {/* Desktop nav links */}
           <div className="hidden lg:flex items-center gap-1">
-            {NAV_LINKS.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                className="
-                  px-4 py-2 rounded-lg
-                  text-sm font-medium text-white/60
-                  hover:text-white hover:bg-white/[0.05]
-                  transition-all duration-300
-                "
-              >
-                {link.label}
-              </a>
-            ))}
+            {NAV_LINKS.map((link) => {
+              const isActive = activeSection === link.id;
+              return (
+                <a
+                  key={link.label}
+                  href={`#${link.id}`}
+                  onClick={(e) => handleNavClick(e, link.id)}
+                  className={`
+                    px-4 py-2 rounded-lg relative group
+                    text-sm font-medium transition-all duration-300
+                    ${isActive ? 'text-white' : 'text-white/60 hover:text-white hover:bg-white/[0.05]'}
+                  `}
+                  aria-current={isActive ? 'page' : undefined}
+                >
+                  {link.label}
+                  {/* Animated underline for active state */}
+                  {isActive && (
+                    <span className="absolute bottom-1 left-4 right-4 h-0.5 bg-primary-400 rounded-full layout-animation" />
+                  )}
+                </a>
+              );
+            })}
           </div>
 
           {/* Desktop CTA */}
           <div className="hidden lg:block">
-            <RippleButton variant="primary" ariaLabel="Start free trial">
+            <RippleButton variant="primary" onClick={(e) => scrollToSection(e, 'pricing')} ariaLabel="Start free trial">
               Start Free Trial
             </RippleButton>
           </div>

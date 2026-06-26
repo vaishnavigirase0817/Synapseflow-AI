@@ -6,6 +6,7 @@ import AIDashboard from './AIDashboard';
 import HolographicCards from './HolographicCards';
 import LiveActivityPanel from './LiveActivityPanel';
 import RippleButton from '../common/RippleButton';
+import { scrollToSection } from '../../hooks/useActiveSection';
 
 /**
  * HeroSection — Main orchestrator component for the "AI Control Room" hero.
@@ -55,14 +56,14 @@ export default function HeroSection() {
 
             {/* CTA Buttons */}
             <div className="opacity-0 animate-slide-up-delay-3 flex flex-col sm:flex-row items-center gap-3 sm:gap-4 justify-center lg:justify-start">
-              <RippleButton variant="primary" ariaLabel="Start your free trial">
+              <RippleButton variant="primary" ariaLabel="Start your free trial" onClick={(e) => scrollToSection(e, 'pricing')}>
                 <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   <path d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
                 Start Free Trial
               </RippleButton>
 
-              <RippleButton variant="outline" ariaLabel="Watch product demo video">
+              <RippleButton variant="outline" ariaLabel="Watch product demo video" onClick={(e) => scrollToSection(e, 'dashboard')}>
                 <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   <polygon points="5 3 19 12 5 21 5 3" />
                 </svg>

@@ -2,6 +2,7 @@ import { useState, useMemo, useCallback } from 'react';
 import ScrollReveal from '../common/ScrollReveal';
 import SectionHeading from '../common/SectionHeading';
 import RippleButton from '../common/RippleButton';
+import { scrollToSection } from '../../hooks/useActiveSection';
 
 /**
  * PRICING CONFIGURATION — Single source of truth.
@@ -144,6 +145,7 @@ function PricingCard({ planKey, plan, price, symbol, isAnnual, index }) {
         <RippleButton
           variant={plan.popular ? 'primary' : 'outline'}
           className="w-full justify-center mb-6"
+          onClick={(e) => scrollToSection(e, 'contact')}
           ariaLabel={`${plan.cta} for ${plan.name} plan`}
         >
           {plan.cta}
