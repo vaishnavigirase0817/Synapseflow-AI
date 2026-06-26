@@ -104,7 +104,7 @@ function BentoCard({ feature, isActive, onClick, index }) {
         focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-400
         ${isActive
           ? 'glass-strong ring-1 ring-primary-400/30 scale-[1.02] shadow-xl shadow-primary-500/10'
-          : 'glass hover:bg-white/[0.04] hover:-translate-y-1 hover:shadow-lg hover:shadow-primary-500/5'
+          : 'glass hover:bg-glass/[0.04] hover:-translate-y-1 hover:shadow-lg hover:shadow-primary-500/5'
         }
       `}
       aria-expanded={isActive}
@@ -119,17 +119,17 @@ function BentoCard({ feature, isActive, onClick, index }) {
           {feature.icon}
         </div>
 
-        <h3 className="font-display font-semibold text-lg sm:text-xl text-white mb-2">
+        <h3 className="font-display font-semibold text-lg sm:text-xl text-main mb-2">
           {feature.title}
         </h3>
-        <p className="text-sm text-white/50 leading-relaxed mb-3">
+        <p className="text-sm text-main/50 leading-relaxed mb-3">
           {feature.description}
         </p>
 
         {/* Expanded detail */}
         <div className={`overflow-hidden transition-all duration-500 ${isActive ? 'max-h-40 opacity-100 mt-3' : 'max-h-0 opacity-0'}`}>
-          <div className="pt-3 border-t border-white/[0.06]">
-            <p className="text-sm text-white/40 leading-relaxed">{feature.detail}</p>
+          <div className="pt-3 border-t border-glass/[0.06]">
+            <p className="text-sm text-main/40 leading-relaxed">{feature.detail}</p>
           </div>
         </div>
       </div>
@@ -163,11 +163,11 @@ function AccordionItem({ feature, isActive, onClick, index }) {
           {feature.icon}
         </div>
         <div className="flex-1 min-w-0">
-          <h3 className="font-display font-semibold text-base text-white">{feature.title}</h3>
-          <p className="text-xs text-white/40 truncate">{feature.description}</p>
+          <h3 className="font-display font-semibold text-base text-main">{feature.title}</h3>
+          <p className="text-xs text-main/40 truncate">{feature.description}</p>
         </div>
         <svg
-          className={`w-5 h-5 text-white/40 flex-shrink-0 transition-transform duration-300 ${isActive ? 'rotate-180' : ''}`}
+          className={`w-5 h-5 text-main/40 flex-shrink-0 transition-transform duration-300 ${isActive ? 'rotate-180' : ''}`}
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -188,9 +188,9 @@ function AccordionItem({ feature, isActive, onClick, index }) {
         style={{ height: `${height}px` }}
       >
         <div ref={contentRef} className="px-4 pb-4">
-          <div className="pt-2 border-t border-white/[0.06]">
-            <p className="text-sm text-white/50 leading-relaxed mb-2">{feature.description}</p>
-            <p className="text-sm text-white/40 leading-relaxed">{feature.detail}</p>
+          <div className="pt-2 border-t border-glass/[0.06]">
+            <p className="text-sm text-main/50 leading-relaxed mb-2">{feature.description}</p>
+            <p className="text-sm text-main/40 leading-relaxed">{feature.detail}</p>
           </div>
         </div>
       </div>

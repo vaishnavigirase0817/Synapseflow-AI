@@ -91,10 +91,10 @@ function TimelineStep({ step, index, total }) {
         <span className={`text-xs font-mono text-${step.color}/60 uppercase tracking-wider`}>
           Step {step.step}
         </span>
-        <h3 className="font-display font-semibold text-xl sm:text-2xl text-white mt-1 mb-2">
+        <h3 className="font-display font-semibold text-xl sm:text-2xl text-main mt-1 mb-2">
           {step.title}
         </h3>
-        <p className="text-sm sm:text-base text-white/50 leading-relaxed max-w-md">
+        <p className="text-sm sm:text-base text-main/50 leading-relaxed max-w-md">
           {step.description}
         </p>
       </div>

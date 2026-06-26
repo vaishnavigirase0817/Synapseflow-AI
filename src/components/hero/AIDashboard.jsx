@@ -49,14 +49,14 @@ export default function AIDashboard() {
         aria-label="AI Dashboard preview showing real-time analytics"
       >
         {/* Top bar */}
-        <div className="flex items-center gap-2 px-4 sm:px-5 py-3 border-b border-white/[0.06]">
+        <div className="flex items-center gap-2 px-4 sm:px-5 py-3 border-b border-glass/[0.06]">
           <div className="flex gap-1.5">
             <div className="w-2.5 h-2.5 rounded-full bg-red-400/70" />
             <div className="w-2.5 h-2.5 rounded-full bg-yellow-400/70" />
             <div className="w-2.5 h-2.5 rounded-full bg-green-400/70" />
           </div>
           <div className="flex-1 flex justify-center">
-            <div className="px-3 py-0.5 rounded-md bg-white/[0.04] text-[10px] sm:text-xs text-white/40 font-mono">
+            <div className="px-3 py-0.5 rounded-md bg-glass/[0.04] text-[10px] sm:text-xs text-main/40 font-mono">
               synapseflow.ai/dashboard
             </div>
           </div>
@@ -88,9 +88,9 @@ export default function AIDashboard() {
           </div>
 
           {/* Mini chart */}
-          <div className="rounded-xl bg-white/[0.02] border border-white/[0.05] p-3 sm:p-4">
+          <div className="rounded-xl bg-glass/[0.02] border border-glass/[0.05] p-3 sm:p-4">
             <div className="flex items-center justify-between mb-3">
-              <span className="text-[10px] sm:text-xs text-white/50 font-medium">AI Performance</span>
+              <span className="text-[10px] sm:text-xs text-main/50 font-medium">AI Performance</span>
               <span className="text-[10px] sm:text-xs text-glow-emerald font-mono">Live</span>
             </div>
             <MiniChart />
@@ -110,8 +110,8 @@ export default function AIDashboard() {
 
 function MetricCard({ label, value, trend, color }) {
   return (
-    <div className="rounded-lg bg-white/[0.02] border border-white/[0.05] p-2 sm:p-3">
-      <p className="text-[9px] sm:text-[10px] text-white/40 font-medium mb-1">{label}</p>
+    <div className="rounded-lg bg-glass/[0.02] border border-glass/[0.05] p-2 sm:p-3">
+      <p className="text-[9px] sm:text-[10px] text-main/40 font-medium mb-1">{label}</p>
       <p className={`text-sm sm:text-lg font-display font-bold metric-counter ${color}`}>
         {value}
       </p>

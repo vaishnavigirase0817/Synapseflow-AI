@@ -19,9 +19,9 @@ export default function BackToTop() {
         fixed bottom-6 right-6 z-50
         w-11 h-11 rounded-xl
         bg-primary-600/90 backdrop-blur-xl
-        border border-white/10
+        border border-glass/10
         flex items-center justify-center
-        text-white
+        text-main
         shadow-lg shadow-primary-500/20
         hover:bg-primary-500 hover:shadow-xl hover:shadow-primary-500/30
         hover:-translate-y-0.5

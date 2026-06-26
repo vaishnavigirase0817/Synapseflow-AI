@@ -25,10 +25,10 @@ export default function Contact() {
 
   const inputClasses = `
     w-full px-4 py-3 rounded-xl
-    bg-white/[0.03] border border-white/[0.08]
-    text-white text-sm placeholder-white/25
+    bg-glass/[0.03] border border-glass/[0.08]
+    text-main text-sm placeholder-main/25
     focus:outline-none focus:ring-2 focus:ring-primary-400/50 focus:border-primary-400/30
-    hover:border-white/15
+    hover:border-glass/15
     transition-all duration-300
     disabled:opacity-50 disabled:cursor-not-allowed
   `;
@@ -60,11 +60,11 @@ export default function Contact() {
                       <polyline points="20 6 9 17 4 12" />
                     </svg>
                   </div>
-                  <h3 className="font-display font-semibold text-xl text-white mb-2">Message Sent!</h3>
-                  <p className="text-sm text-white/50">We'll get back to you within 24 hours.</p>
+                  <h3 className="font-display font-semibold text-xl text-main mb-2">Message Sent!</h3>
+                  <p className="text-sm text-main/50">We'll get back to you within 24 hours.</p>
                   <button 
                     onClick={() => { setStatus('idle'); setFormData({ name: '', email: '', company: '', message: '' }); }}
-                    className="mt-6 px-4 py-2 text-xs font-medium text-white/50 hover:text-white transition-colors border border-white/10 hover:bg-white/[0.05] rounded-lg"
+                    className="mt-6 px-4 py-2 text-xs font-medium text-main/50 hover:text-main transition-colors border border-glass/10 hover:bg-glass/[0.05] rounded-lg"
                   >
                     Send another message
                   </button>
@@ -73,7 +73,7 @@ export default function Contact() {
                 <form onSubmit={handleSubmit} className="space-y-5" noValidate>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label htmlFor="contact-name" className="block text-xs font-medium text-white/50 mb-1.5">Name</label>
+                      <label htmlFor="contact-name" className="block text-xs font-medium text-main/50 mb-1.5">Name</label>
                       <input
                         id="contact-name"
                         name="name"
@@ -91,7 +91,7 @@ export default function Contact() {
                       />
                     </div>
                     <div>
-                      <label htmlFor="contact-email" className="block text-xs font-medium text-white/50 mb-1.5">Email</label>
+                      <label htmlFor="contact-email" className="block text-xs font-medium text-main/50 mb-1.5">Email</label>
                       <input
                         id="contact-email"
                         name="email"
@@ -110,7 +110,7 @@ export default function Contact() {
                   </div>
 
                   <div>
-                    <label htmlFor="contact-company" className="block text-xs font-medium text-white/50 mb-1.5">Company</label>
+                    <label htmlFor="contact-company" className="block text-xs font-medium text-main/50 mb-1.5">Company</label>
                     <input
                       id="contact-company"
                       name="company"
@@ -126,7 +126,7 @@ export default function Contact() {
                   </div>
 
                   <div>
-                    <label htmlFor="contact-message" className="block text-xs font-medium text-white/50 mb-1.5">Message</label>
+                    <label htmlFor="contact-message" className="block text-xs font-medium text-main/50 mb-1.5">Message</label>
                     <textarea
                       id="contact-message"
                       name="message"
@@ -147,13 +147,13 @@ export default function Contact() {
                     type="submit"
                     disabled={status === 'loading'}
                     className={`w-full relative overflow-hidden rounded-xl font-medium transition-all duration-300 shadow-lg px-6 py-3 flex items-center justify-center gap-2 ${
-                      status === 'loading' ? 'bg-primary-500/50 text-white/70 shadow-none cursor-not-allowed' : 'bg-primary-600 text-white hover:bg-primary-500 shadow-primary-500/25'
+                      status === 'loading' ? 'bg-primary-500/50 text-main/70 shadow-none cursor-not-allowed' : 'bg-primary-600 text-main hover:bg-primary-500 shadow-primary-500/25'
                     }`}
                     aria-label="Send message"
                   >
                     {status === 'loading' ? (
                       <>
-                        <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" fill="none" viewBox="0 0 24 24">
+                        <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-main" fill="none" viewBox="0 0 24 24">
                           <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                           <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                         </svg>
@@ -203,14 +203,14 @@ export default function Contact() {
                   sub: 'Mon-Fri, 9am-6pm PST',
                 },
               ].map((item) => (
-                <div key={item.title} className="flex items-start gap-4 p-4 rounded-xl glass hover:bg-white/[0.04] transition-all duration-300 group">
-                  <div className="w-10 h-10 rounded-xl bg-white/[0.04] flex items-center justify-center text-lg group-hover:scale-110 transition-transform duration-300">
+                <div key={item.title} className="flex items-start gap-4 p-4 rounded-xl glass hover:bg-glass/[0.04] transition-all duration-300 group">
+                  <div className="w-10 h-10 rounded-xl bg-glass/[0.04] flex items-center justify-center text-lg group-hover:scale-110 transition-transform duration-300">
                     {item.icon}
                   </div>
                   <div>
-                    <h4 className="font-medium text-sm text-white/80">{item.title}</h4>
+                    <h4 className="font-medium text-sm text-main/80">{item.title}</h4>
                     <p className="text-sm text-primary-300 font-medium">{item.detail}</p>
-                    <p className="text-xs text-white/35 mt-0.5">{item.sub}</p>
+                    <p className="text-xs text-main/35 mt-0.5">{item.sub}</p>
                   </div>
                 </div>
               ))}

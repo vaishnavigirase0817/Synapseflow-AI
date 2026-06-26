@@ -14,10 +14,10 @@ const COMPANIES = [
 function CompanyLogo({ name }) {
   return (
     <div className="flex items-center gap-2 px-6 py-3 opacity-40 hover:opacity-70 transition-opacity duration-500 select-none">
-      <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-white/10 to-white/5 border border-white/10 flex items-center justify-center">
-        <span className="text-xs font-bold text-white/60">{name[0]}</span>
+      <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-white/10 to-white/5 border border-glass/10 flex items-center justify-center">
+        <span className="text-xs font-bold text-main/60">{name[0]}</span>
       </div>
-      <span className="text-sm font-display font-medium text-white/60 whitespace-nowrap">{name}</span>
+      <span className="text-sm font-display font-medium text-main/60 whitespace-nowrap">{name}</span>
     </div>
   );
 }
@@ -29,7 +29,7 @@ export default function TrustedCompanies() {
   return (
     <section className="relative py-16 lg:py-20 overflow-hidden" aria-label="Trusted by leading companies">
       <ScrollReveal>
-        <p className="text-center text-sm text-white/30 uppercase tracking-widest font-medium mb-8">
+        <p className="text-center text-sm text-main/30 uppercase tracking-widest font-medium mb-8">
           Trusted by innovative teams worldwide
         </p>
       </ScrollReveal>

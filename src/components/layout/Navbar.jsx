@@ -120,7 +120,7 @@ export default function Navbar() {
 
           {/* Desktop CTA */}
           <div className="hidden lg:block">
-            <RippleButton variant="primary" onClick={(e) => scrollToSection(e, 'pricing')} ariaLabel="Start free trial">
+            <RippleButton variant="primary" onClick={() => navigate('/dashboard')} ariaLabel="Start free trial">
               Start Free Trial
             </RippleButton>
           </div>

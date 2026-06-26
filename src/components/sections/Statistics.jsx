@@ -16,7 +16,7 @@ function StatCard({ stat, index }) {
   return (
     <div
       ref={ref}
-      className="relative group p-6 sm:p-8 rounded-2xl glass hover:bg-white/[0.04] transition-all duration-500"
+      className="relative group p-6 sm:p-8 rounded-2xl glass hover:bg-glass/[0.04] transition-all duration-500"
       style={{ transitionDelay: `${index * 100}ms` }}
     >
       {/* Glow effect on hover */}
@@ -24,11 +24,11 @@ function StatCard({ stat, index }) {
 
       <div className="relative">
         <span className="text-2xl mb-3 block">{stat.icon}</span>
-        <p className="font-display font-bold text-3xl sm:text-4xl lg:text-5xl text-white mb-1 metric-counter">
+        <p className="font-display font-bold text-3xl sm:text-4xl lg:text-5xl text-main mb-1 metric-counter">
           {count}
         </p>
-        <p className="font-medium text-white/80 text-sm sm:text-base mb-1">{stat.label}</p>
-        <p className="text-xs sm:text-sm text-white/40">{stat.description}</p>
+        <p className="font-medium text-main/80 text-sm sm:text-base mb-1">{stat.label}</p>
+        <p className="text-xs sm:text-sm text-main/40">{stat.description}</p>
       </div>
     </div>
   );
@@ -44,7 +44,7 @@ export default function Statistics() {
         <ScrollReveal>
           <div className="text-center mb-12">
             <p className="text-sm text-primary-400 uppercase tracking-widest font-medium mb-3">By the numbers</p>
-            <h2 className="font-display font-bold text-3xl sm:text-4xl lg:text-5xl text-white">
+            <h2 className="font-display font-bold text-3xl sm:text-4xl lg:text-5xl text-main">
               Results that speak for themselves
             </h2>
           </div>

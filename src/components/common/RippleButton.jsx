@@ -87,18 +87,18 @@ export default function RippleButton({
   const variantClasses = {
     primary: `
       bg-gradient-to-r from-primary-500 via-primary-600 to-accent-600
-      text-white
+      text-main
       shadow-lg shadow-primary-500/25
       hover:shadow-xl hover:shadow-primary-500/40
       hover:brightness-110
       active:scale-[0.98]
     `,
     outline: `
-      bg-white/[0.03] backdrop-blur-xl
-      border border-white/10
-      text-white
-      hover:bg-white/[0.08]
-      hover:border-white/20
+      bg-glass/[0.03] backdrop-blur-xl
+      border border-glass/10
+      text-main
+      hover:bg-glass/[0.08]
+      hover:border-glass/20
       hover:shadow-lg hover:shadow-primary-500/10
       active:scale-[0.98]
     `,

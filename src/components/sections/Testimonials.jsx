@@ -55,7 +55,7 @@ const TESTIMONIALS = [
 
 function TestimonialCard({ testimonial }) {
   return (
-    <div className="glass rounded-2xl p-6 hover:bg-white/[0.04] transition-all duration-500 hover:-translate-y-1 group flex flex-col">
+    <div className="glass rounded-2xl p-6 hover:bg-glass/[0.04] transition-all duration-500 hover:-translate-y-1 group flex flex-col">
       {/* Stars */}
       <div className="flex gap-1 mb-4">
         {[...Array(testimonial.rating)].map((_, i) => (
@@ -66,18 +66,18 @@ function TestimonialCard({ testimonial }) {
       </div>
 
       {/* Quote */}
-      <blockquote className="text-sm sm:text-base text-white/60 leading-relaxed mb-6 flex-1">
+      <blockquote className="text-sm sm:text-base text-main/60 leading-relaxed mb-6 flex-1">
         &ldquo;{testimonial.quote}&rdquo;
       </blockquote>
 
       {/* Author */}
       <div className="flex items-center gap-3">
-        <div className={`w-10 h-10 rounded-full bg-gradient-to-br ${testimonial.color} flex items-center justify-center text-xs font-bold text-white`}>
+        <div className={`w-10 h-10 rounded-full bg-gradient-to-br ${testimonial.color} flex items-center justify-center text-xs font-bold text-main`}>
           {testimonial.avatar}
         </div>
         <div>
-          <p className="text-sm font-medium text-white/80">{testimonial.name}</p>
-          <p className="text-xs text-white/40">{testimonial.role}</p>
+          <p className="text-sm font-medium text-main/80">{testimonial.name}</p>
+          <p className="text-xs text-main/40">{testimonial.role}</p>
         </div>
       </div>
     </div>

@@ -66,7 +66,7 @@ export default function LiveActivityPanel() {
           <span className="animate-ping-slow absolute inline-flex h-full w-full rounded-full bg-glow-emerald opacity-75" />
           <span className="relative inline-flex rounded-full h-2 w-2 bg-glow-emerald" />
         </span>
-        <span className="text-xs font-medium text-white/50 uppercase tracking-wider">
+        <span className="text-xs font-medium text-main/50 uppercase tracking-wider">
           Live Activity
         </span>
       </div>
@@ -96,10 +96,10 @@ export default function LiveActivityPanel() {
 
             {/* Text */}
             <div className="flex-1 min-w-0">
-              <p className="text-xs sm:text-sm text-white/80 font-medium truncate">
+              <p className="text-xs sm:text-sm text-main/80 font-medium truncate">
                 {item.text}
               </p>
-              <p className="text-[10px] text-white/30 font-mono mt-0.5">
+              <p className="text-[10px] text-main/30 font-mono mt-0.5">
                 {item.timestamp}
               </p>
             </div>

@@ -1,5 +1,7 @@
 import { useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import RippleButton from '../common/RippleButton';
+import { scrollToSection } from '../../hooks/useActiveSection';
 
 /**
  * MobileMenu — Full-screen overlay mobile navigation with glass backdrop,
@@ -11,6 +13,8 @@ import RippleButton from '../common/RippleButton';
  * @param {Array<{label: string, id: string}>} props.links - Navigation links
  */
 export default function MobileMenu({ isOpen, onClose, links }) {
+  const navigate = useNavigate();
+
   useEffect(() => {
     const handleEscape = (e) => {
       if (e.key === 'Escape') onClose();
@@ -39,7 +43,7 @@ export default function MobileMenu({ isOpen, onClose, links }) {
 
       {/* Menu panel */}
       <div
-        className={`fixed top-16 right-4 left-4 z-40 p-4 rounded-2xl glass-strong border border-white/[0.08] shadow-2xl shadow-black/50 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] lg:hidden ${
+        className={`fixed top-16 right-4 left-4 z-40 p-4 rounded-2xl glass-strong border border-glass/[0.08] shadow-2xl shadow-black/50 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] lg:hidden ${
           isOpen
             ? 'translate-y-0 opacity-100 scale-100 pointer-events-auto'
             : '-translate-y-8 opacity-0 scale-95 pointer-events-none'
@@ -55,7 +59,7 @@ export default function MobileMenu({ isOpen, onClose, links }) {
               key={link.label}
               href={`#${link.id}`}
               onClick={(e) => handleLinkClick(e, link.id)}
-              className="px-4 py-3 rounded-xl text-base font-medium text-white hover:bg-white/[0.06] transition-colors"
+              className="px-4 py-3 rounded-xl text-base font-medium text-main hover:bg-glass/[0.06] transition-colors"
               style={{
                 transitionDelay: isOpen ? `${i * 50}ms` : '0ms',
                 transform: isOpen ? 'translateY(0)' : 'translateY(10px)',
@@ -67,7 +71,7 @@ export default function MobileMenu({ isOpen, onClose, links }) {
           ))}
 
           <div
-            className="pt-4 pb-2 mt-2 border-t border-white/[0.06]"
+            className="pt-4 pb-2 mt-2 border-t border-glass/[0.06]"
             style={{
               transitionDelay: isOpen ? `${links.length * 50}ms` : '0ms',
               transform: isOpen ? 'translateY(0)' : 'translateY(10px)',
@@ -76,7 +80,7 @@ export default function MobileMenu({ isOpen, onClose, links }) {
               transitionDuration: '500ms',
             }}
           >
-            <RippleButton variant="primary" className="w-full justify-center" onClick={(e) => handleLinkClick(e, 'pricing')}>
+            <RippleButton variant="primary" className="w-full justify-center" onClick={() => { onClose(); navigate('/dashboard'); }}>
               Start Free Trial
             </RippleButton>
           </div>

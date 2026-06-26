@@ -6,6 +6,7 @@ import AIDashboard from './AIDashboard';
 import HolographicCards from './HolographicCards';
 import LiveActivityPanel from './LiveActivityPanel';
 import RippleButton from '../common/RippleButton';
+import { useNavigate } from 'react-router-dom';
 import { scrollToSection } from '../../hooks/useActiveSection';
 
 /**
@@ -13,6 +14,8 @@ import { scrollToSection } from '../../hooks/useActiveSection';
  * Layers (back→front): Aurora → Particles → Ring → Connections → Dashboard → Cards → Text → Activity
  */
 export default function HeroSection() {
+  const navigate = useNavigate();
+
   return (
     <section
       className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden contain-paint"
@@ -56,7 +59,7 @@ export default function HeroSection() {
 
             {/* CTA Buttons */}
             <div className="opacity-0 animate-slide-up-delay-3 flex flex-col sm:flex-row items-center gap-3 sm:gap-4 justify-center lg:justify-start">
-              <RippleButton variant="primary" ariaLabel="Start your free trial" onClick={(e) => scrollToSection(e, 'pricing')}>
+              <RippleButton variant="primary" ariaLabel="Start your free trial" onClick={() => navigate('/dashboard')}>
                 <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   <path d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>

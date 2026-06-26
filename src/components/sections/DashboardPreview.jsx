@@ -36,14 +36,14 @@ export default function DashboardPreview() {
         <ScrollReveal delay={200}>
           <div className="relative rounded-2xl lg:rounded-3xl overflow-hidden glass-strong p-1 min-h-[600px]">
             {/* Browser chrome */}
-            <div className="flex items-center gap-2 px-4 py-3 border-b border-white/[0.06] bg-white/[0.02]">
+            <div className="flex items-center gap-2 px-4 py-3 border-b border-glass/[0.06] bg-glass/[0.02]">
               <div className="flex gap-1.5">
                 <div className="w-3 h-3 rounded-full bg-red-400/60" />
                 <div className="w-3 h-3 rounded-full bg-yellow-400/60" />
                 <div className="w-3 h-3 rounded-full bg-green-400/60" />
               </div>
               <div className="flex-1 flex justify-center">
-                <div className="px-4 py-1 rounded-lg bg-white/[0.04] text-xs text-white/40 font-mono">
+                <div className="px-4 py-1 rounded-lg bg-glass/[0.04] text-xs text-main/40 font-mono">
                   app.synapseflow.ai/dashboard
                 </div>
               </div>
@@ -65,18 +65,18 @@ export default function DashboardPreview() {
               {/* Middle row */}
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
                 {/* Revenue chart — takes 2 cols */}
-                <div className="lg:col-span-2 rounded-xl bg-white/[0.02] border border-white/[0.05] p-4 sm:p-5">
+                <div className="lg:col-span-2 rounded-xl bg-glass/[0.02] border border-glass/[0.05] p-4 sm:p-5">
                   <div className="flex items-center justify-between mb-4">
                     <div>
-                      <h3 className="text-sm font-medium text-white/70">Revenue Overview</h3>
-                      <p className="text-xs text-white/30 mt-0.5">Last 12 months</p>
+                      <h3 className="text-sm font-medium text-main/70">Revenue Overview</h3>
+                      <p className="text-xs text-main/30 mt-0.5">Last 12 months</p>
                     </div>
                     <div className="flex gap-2">
                       {['1M', '3M', '6M', '1Y'].map((period, i) => (
                         <button
                           key={period}
                           className={`px-2.5 py-1 rounded-md text-[10px] font-medium transition-all duration-200 ${
-                            i === 3 ? 'bg-primary-500/20 text-primary-300' : 'text-white/30 hover:text-white/50 hover:bg-white/[0.04]'
+                            i === 3 ? 'bg-primary-500/20 text-primary-300' : 'text-main/30 hover:text-main/50 hover:bg-glass/[0.04]'
                           }`}
                         >
                           {period}
@@ -88,8 +88,8 @@ export default function DashboardPreview() {
                 </div>
 
                 {/* AI Recommendations */}
-                <div className="rounded-xl bg-white/[0.02] border border-white/[0.05] p-4 sm:p-5">
-                  <h3 className="text-sm font-medium text-white/70 mb-4">AI Recommendations</h3>
+                <div className="rounded-xl bg-glass/[0.02] border border-glass/[0.05] p-4 sm:p-5">
+                  <h3 className="text-sm font-medium text-main/70 mb-4">AI Recommendations</h3>
                   <div className="space-y-3">
                     <RecommendationItem
                       icon="🎯"
@@ -116,8 +116,8 @@ export default function DashboardPreview() {
               {/* Bottom row */}
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
                 {/* Recent Automations */}
-                <div className="rounded-xl bg-white/[0.02] border border-white/[0.05] p-4 sm:p-5">
-                  <h3 className="text-sm font-medium text-white/70 mb-4">Recent Automations</h3>
+                <div className="rounded-xl bg-glass/[0.02] border border-glass/[0.05] p-4 sm:p-5">
+                  <h3 className="text-sm font-medium text-main/70 mb-4">Recent Automations</h3>
                   <div className="space-y-2.5">
                     {[
                       { name: 'Email Campaign Trigger', status: 'active', time: '2m ago' },
@@ -125,14 +125,14 @@ export default function DashboardPreview() {
                       { name: 'Report Generator', status: 'active', time: '1h ago' },
                       { name: 'Lead Scoring Model', status: 'paused', time: '3h ago' },
                     ].map((item) => (
-                      <div key={item.name} className="flex items-center gap-3 py-2 border-b border-white/[0.04] last:border-0">
+                      <div key={item.name} className="flex items-center gap-3 py-2 border-b border-glass/[0.04] last:border-0">
                         <div className={`w-2 h-2 rounded-full flex-shrink-0 ${
                           item.status === 'active' ? 'bg-glow-emerald' :
                           item.status === 'completed' ? 'bg-glow-blue' : 'bg-yellow-400'
                         }`} />
                         <div className="flex-1 min-w-0">
-                          <p className="text-xs font-medium text-white/70 truncate">{item.name}</p>
-                          <p className="text-[10px] text-white/30">{item.time}</p>
+                          <p className="text-xs font-medium text-main/70 truncate">{item.name}</p>
+                          <p className="text-[10px] text-main/30">{item.time}</p>
                         </div>
                       </div>
                     ))}
@@ -140,8 +140,8 @@ export default function DashboardPreview() {
                 </div>
 
                 {/* Activity Timeline */}
-                <div className="rounded-xl bg-white/[0.02] border border-white/[0.05] p-4 sm:p-5">
-                  <h3 className="text-sm font-medium text-white/70 mb-4">Activity Timeline</h3>
+                <div className="rounded-xl bg-glass/[0.02] border border-glass/[0.05] p-4 sm:p-5">
+                  <h3 className="text-sm font-medium text-main/70 mb-4">Activity Timeline</h3>
                   <div className="space-y-4">
                     {[
                       { time: '09:42', text: 'New prediction model deployed', dot: 'bg-glow-cyan' },
@@ -150,11 +150,11 @@ export default function DashboardPreview() {
                       { time: '09:15', text: 'CRM data synchronized', dot: 'bg-glow-blue' },
                     ].map((item, i) => (
                       <div key={i} className="flex gap-3 relative">
-                        {i < 3 && <div className="absolute left-[5px] top-4 w-px h-full bg-white/[0.06]" />}
+                        {i < 3 && <div className="absolute left-[5px] top-4 w-px h-full bg-glass/[0.06]" />}
                         <div className={`w-2.5 h-2.5 rounded-full ${item.dot} mt-1 flex-shrink-0`} />
                         <div>
-                          <p className="text-xs text-white/60">{item.text}</p>
-                          <p className="text-[10px] text-white/25 font-mono">{item.time}</p>
+                          <p className="text-xs text-main/60">{item.text}</p>
+                          <p className="text-[10px] text-main/25 font-mono">{item.time}</p>
                         </div>
                       </div>
                     ))}
@@ -162,8 +162,8 @@ export default function DashboardPreview() {
                 </div>
 
                 {/* Workflow Builder Preview */}
-                <div className="rounded-xl bg-white/[0.02] border border-white/[0.05] p-4 sm:p-5">
-                  <h3 className="text-sm font-medium text-white/70 mb-4">Workflow Builder</h3>
+                <div className="rounded-xl bg-glass/[0.02] border border-glass/[0.05] p-4 sm:p-5">
+                  <h3 className="text-sm font-medium text-main/70 mb-4">Workflow Builder</h3>
                   <div className="space-y-2">
                     {[
                       { label: 'Trigger', sub: 'New lead created', color: 'border-glow-cyan/30 bg-glow-cyan/5' },
@@ -173,17 +173,17 @@ export default function DashboardPreview() {
                     ].map((step, i) => (
                       <div key={i}>
                         <div className={`rounded-lg border ${step.color} p-2.5 flex items-center gap-2.5`}>
-                          <div className="w-6 h-6 rounded-md bg-white/[0.06] flex items-center justify-center text-[10px] font-bold text-white/50">
+                          <div className="w-6 h-6 rounded-md bg-glass/[0.06] flex items-center justify-center text-[10px] font-bold text-main/50">
                             {i + 1}
                           </div>
                           <div>
-                            <p className="text-[11px] font-medium text-white/70">{step.label}</p>
-                            <p className="text-[10px] text-white/30">{step.sub}</p>
+                            <p className="text-[11px] font-medium text-main/70">{step.label}</p>
+                            <p className="text-[10px] text-main/30">{step.sub}</p>
                           </div>
                         </div>
                         {i < 3 && (
                           <div className="flex justify-center py-1">
-                            <svg className="w-4 h-4 text-white/20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <svg className="w-4 h-4 text-main/20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                               <polyline points="6 9 12 15 18 9" />
                             </svg>
                           </div>
@@ -197,7 +197,7 @@ export default function DashboardPreview() {
               {/* Notifications bar */}
               <div className="flex items-center gap-3 px-4 py-3 rounded-xl bg-primary-500/5 border border-primary-400/10">
                 <div className="w-8 h-8 rounded-lg bg-primary-500/20 flex items-center justify-center text-sm">🔔</div>
-                <p className="text-xs text-white/60 flex-1">
+                <p className="text-xs text-main/60 flex-1">
                   <span className="text-primary-300 font-medium">3 new notifications:</span> Model accuracy improved to 99.1% • Weekly report ready • New team member joined
                 </p>
               </div>
@@ -216,25 +216,25 @@ function DashboardSkeleton() {
       {/* Top row skeletons */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
         {[1, 2, 3, 4].map((i) => (
-          <div key={i} className="rounded-xl bg-white/[0.02] border border-white/[0.05] p-3 sm:p-4 h-24">
-            <div className="w-8 h-8 rounded-lg bg-white/5 animate-pulse mb-3" />
-            <div className="w-24 h-6 rounded bg-white/5 animate-pulse mb-2" />
-            <div className="w-16 h-3 rounded bg-white/5 animate-pulse" />
+          <div key={i} className="rounded-xl bg-glass/[0.02] border border-glass/[0.05] p-3 sm:p-4 h-24">
+            <div className="w-8 h-8 rounded-lg bg-glass/5 animate-pulse mb-3" />
+            <div className="w-24 h-6 rounded bg-glass/5 animate-pulse mb-2" />
+            <div className="w-16 h-3 rounded bg-glass/5 animate-pulse" />
           </div>
         ))}
       </div>
 
       {/* Middle row skeletons */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-        <div className="lg:col-span-2 rounded-xl bg-white/[0.02] border border-white/[0.05] p-4 sm:p-5 h-48 flex flex-col justify-between">
-          <div className="w-32 h-4 rounded bg-white/5 animate-pulse" />
-          <div className="w-full h-24 rounded bg-white/5 animate-pulse mt-4" />
+        <div className="lg:col-span-2 rounded-xl bg-glass/[0.02] border border-glass/[0.05] p-4 sm:p-5 h-48 flex flex-col justify-between">
+          <div className="w-32 h-4 rounded bg-glass/5 animate-pulse" />
+          <div className="w-full h-24 rounded bg-glass/5 animate-pulse mt-4" />
         </div>
-        <div className="rounded-xl bg-white/[0.02] border border-white/[0.05] p-4 sm:p-5 h-48 space-y-4">
-          <div className="w-40 h-4 rounded bg-white/5 animate-pulse mb-6" />
-          <div className="w-full h-8 rounded bg-white/5 animate-pulse" />
-          <div className="w-full h-8 rounded bg-white/5 animate-pulse" />
-          <div className="w-full h-8 rounded bg-white/5 animate-pulse" />
+        <div className="rounded-xl bg-glass/[0.02] border border-glass/[0.05] p-4 sm:p-5 h-48 space-y-4">
+          <div className="w-40 h-4 rounded bg-glass/5 animate-pulse mb-6" />
+          <div className="w-full h-8 rounded bg-glass/5 animate-pulse" />
+          <div className="w-full h-8 rounded bg-glass/5 animate-pulse" />
+          <div className="w-full h-8 rounded bg-glass/5 animate-pulse" />
         </div>
       </div>
     </div>
@@ -245,7 +245,7 @@ function AnalyticsCard({ label, value, change, positive, icon }) {
   const [ref, isVisible] = useScrollReveal({ threshold: 0.3 });
 
   return (
-    <div ref={ref} className="rounded-xl bg-white/[0.02] border border-white/[0.05] p-3 sm:p-4">
+    <div ref={ref} className="rounded-xl bg-glass/[0.02] border border-glass/[0.05] p-3 sm:p-4">
       <div className="flex items-center justify-between mb-2">
         <span className="text-lg">{icon}</span>
         <span className={`text-[10px] sm:text-xs font-medium px-1.5 py-0.5 rounded-md ${
@@ -254,8 +254,8 @@ function AnalyticsCard({ label, value, change, positive, icon }) {
           {change}
         </span>
       </div>
-      <p className="font-display font-bold text-lg sm:text-xl text-white metric-counter">{value}</p>
-      <p className="text-[10px] sm:text-xs text-white/40 mt-0.5">{label}</p>
+      <p className="font-display font-bold text-lg sm:text-xl text-main metric-counter">{value}</p>
+      <p className="text-[10px] sm:text-xs text-main/40 mt-0.5">{label}</p>
     </div>
   );
 }
@@ -344,9 +344,9 @@ function RecommendationItem({ icon, title, desc, priority }) {
     <div className={`pl-3 border-l-2 ${priorityColors[priority]} py-1`}>
       <div className="flex items-center gap-2 mb-0.5">
         <span className="text-sm">{icon}</span>
-        <p className="text-xs font-medium text-white/70">{title}</p>
+        <p className="text-xs font-medium text-main/70">{title}</p>
       </div>
-      <p className="text-[10px] text-white/35 leading-relaxed">{desc}</p>
+      <p className="text-[10px] text-main/35 leading-relaxed">{desc}</p>
     </div>
   );
 }

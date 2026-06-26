@@ -1,64 +1,52 @@
 import React, { Suspense } from 'react';
-import Navbar from './components/layout/Navbar';
-import HeroSection from './components/hero/HeroSection';
-import BackToTop from './components/common/BackToTop';
-import ProgressIndicator from './components/common/ProgressIndicator';
-import CursorSpotlight from './components/common/CursorSpotlight';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import LandingPage from './pages/LandingPage';
 
-// Lazy load sections below the fold for performance
-const TrustedCompanies = React.lazy(() => import('./components/sections/TrustedCompanies'));
-const Statistics = React.lazy(() => import('./components/sections/Statistics'));
-const BentoFeatureGrid = React.lazy(() => import('./components/sections/BentoFeatureGrid'));
-const DashboardPreview = React.lazy(() => import('./components/sections/DashboardPreview'));
-const WorkflowTimeline = React.lazy(() => import('./components/sections/WorkflowTimeline'));
-const Pricing = React.lazy(() => import('./components/sections/Pricing'));
-const Testimonials = React.lazy(() => import('./components/sections/Testimonials'));
-const FAQ = React.lazy(() => import('./components/sections/FAQ'));
-const Contact = React.lazy(() => import('./components/sections/Contact'));
-const Footer = React.lazy(() => import('./components/sections/Footer'));
+// Lazy load Dashboard Layout to split the bundle
+const DashboardLayout = React.lazy(() => import('./dashboard/layout/DashboardLayout'));
+const Overview = React.lazy(() => import('./dashboard/pages/Overview'));
+const Analytics = React.lazy(() => import('./dashboard/pages/Analytics'));
+const Reports = React.lazy(() => import('./dashboard/pages/Reports'));
+const Settings = React.lazy(() => import('./dashboard/pages/Settings'));
+const WorkflowBuilder = React.lazy(() => import('./dashboard/pages/WorkflowBuilder'));
+const Automations = React.lazy(() => import('./dashboard/pages/Automations'));
+const Integrations = React.lazy(() => import('./dashboard/pages/Integrations'));
+const Team = React.lazy(() => import('./dashboard/pages/Team'));
+const Notifications = React.lazy(() => import('./dashboard/pages/Notifications'));
 
 /**
- * App — Root component assembling the complete SynapseFlow AI landing page.
- * Uses semantic HTML5 landmarks for full accessibility and React.lazy for code splitting.
+ * App — Root component with React Router configuration.
  */
 export default function App() {
   return (
-    <div className="relative min-h-screen bg-surface-500">
-      {/* Accessibility: Skip to main content */}
-      <a
-        href="#hero"
-        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-primary-600 focus:text-white focus:rounded-lg"
-      >
-        Skip to main content
-      </a>
+    <BrowserRouter>
+      <Routes>
+        {/* Public Landing Page */}
+        <Route path="/" element={<LandingPage />} />
 
-      <CursorSpotlight />
-      <ProgressIndicator />
-      <Navbar />
-
-      <main role="main">
-        {/* Hero loads immediately */}
-        <HeroSection />
-
-        {/* Below-fold content lazily loaded */}
-        <Suspense fallback={<div className="min-h-screen" />}>
-          <TrustedCompanies />
-          <Statistics />
-          <BentoFeatureGrid />
-          <DashboardPreview />
-          <WorkflowTimeline />
-          <Pricing />
-          <Testimonials />
-          <FAQ />
-          <Contact />
-        </Suspense>
-      </main>
-
-      <Suspense fallback={<div className="h-64" />}>
-        <Footer />
-      </Suspense>
-
-      <BackToTop />
-    </div>
+        {/* Dashboard Application Routes */}
+        <Route 
+          path="/dashboard" 
+          element={
+            <Suspense fallback={<div className="min-h-screen bg-surface-500 flex items-center justify-center"><div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-primary-500"></div></div>}>
+              <DashboardLayout />
+            </Suspense>
+          }
+        >
+          {/* Default dashboard route */}
+          <Route index element={<Overview />} />
+          <Route path="analytics" element={<Analytics />} />
+          <Route path="reports" element={<Reports />} />
+          <Route path="workflow-builder" element={<WorkflowBuilder />} />
+          <Route path="settings" element={<Settings />} />
+          <Route path="automations" element={<Automations />} />
+          <Route path="integrations" element={<Integrations />} />
+          <Route path="team" element={<Team />} />
+          <Route path="notifications" element={<Notifications />} />
+          {/* Fallback for other dashboard routes */}
+          <Route path="*" element={<Overview />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }

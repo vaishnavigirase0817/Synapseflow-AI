@@ -81,7 +81,7 @@ export default function HolographicCards() {
               <div className={`text-glow-${card.color}`}>
                 {card.icon}
               </div>
-              <span className="text-[11px] sm:text-xs font-medium text-white/80 whitespace-nowrap">
+              <span className="text-[11px] sm:text-xs font-medium text-main/80 whitespace-nowrap">
                 {card.label}
               </span>
             </div>

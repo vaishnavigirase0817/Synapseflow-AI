@@ -1,4 +1,5 @@
 import { useState, useMemo, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 import ScrollReveal from '../common/ScrollReveal';
 import SectionHeading from '../common/SectionHeading';
 import RippleButton from '../common/RippleButton';
@@ -104,6 +105,7 @@ function formatPrice(price, symbol) {
  * PricingCard — Individual plan card, memoized to prevent unnecessary re-renders.
  */
 function PricingCard({ planKey, plan, price, symbol, isAnnual, index }) {
+  const navigate = useNavigate();
   return (
     <div
       className={`
@@ -126,15 +128,15 @@ function PricingCard({ planKey, plan, price, symbol, isAnnual, index }) {
           </span>
         )}
 
-        <h3 className="font-display font-bold text-xl text-white mb-1">{plan.name}</h3>
-        <p className="text-sm text-white/40 mb-5">{plan.description}</p>
+        <h3 className="font-display font-bold text-xl text-main mb-1">{plan.name}</h3>
+        <p className="text-sm text-main/40 mb-5">{plan.description}</p>
 
         {/* Price */}
         <div className="flex items-baseline gap-1 mb-1">
-          <span className="font-display font-bold text-4xl sm:text-5xl text-white transition-all duration-300">
+          <span className="font-display font-bold text-4xl sm:text-5xl text-main transition-all duration-300">
             {formatPrice(price, symbol)}
           </span>
-          <span className="text-sm text-white/40">/mo</span>
+          <span className="text-sm text-main/40">/mo</span>
         </div>
         {isAnnual && (
           <p className="text-xs text-glow-emerald mb-5">Billed annually · Save 20%</p>
@@ -145,7 +147,7 @@ function PricingCard({ planKey, plan, price, symbol, isAnnual, index }) {
         <RippleButton
           variant={plan.popular ? 'primary' : 'outline'}
           className="w-full justify-center mb-6"
-          onClick={(e) => scrollToSection(e, 'contact')}
+          onClick={() => navigate('/dashboard')}
           ariaLabel={`${plan.cta} for ${plan.name} plan`}
         >
           {plan.cta}
@@ -160,12 +162,12 @@ function PricingCard({ planKey, plan, price, symbol, isAnnual, index }) {
                   <polyline points="20 6 9 17 4 12" />
                 </svg>
               ) : (
-                <svg className="w-4 h-4 text-white/15 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <svg className="w-4 h-4 text-main/15 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   <line x1="18" y1="6" x2="6" y2="18" />
                   <line x1="6" y1="6" x2="18" y2="18" />
                 </svg>
               )}
-              <span className={`text-sm ${feature.included ? 'text-white/60' : 'text-white/25'}`}>
+              <span className={`text-sm ${feature.included ? 'text-main/60' : 'text-main/25'}`}>
                 {feature.text}
               </span>
             </li>
@@ -222,7 +224,7 @@ export default function Pricing() {
                     px-3 py-1.5 rounded-lg text-xs font-medium transition-all duration-200
                     ${currency === code
                       ? 'bg-primary-500/20 text-primary-300'
-                      : 'text-white/40 hover:text-white/60 hover:bg-white/[0.04]'
+                      : 'text-main/40 hover:text-main/60 hover:bg-glass/[0.04]'
                     }
                   `}
                   role="radio"
@@ -236,19 +238,19 @@ export default function Pricing() {
 
             {/* Billing toggle */}
             <div className="flex items-center gap-3" role="radiogroup" aria-label="Billing period">
-              <span className={`text-sm font-medium transition-colors ${!isAnnual ? 'text-white' : 'text-white/40'}`}>Monthly</span>
+              <span className={`text-sm font-medium transition-colors ${!isAnnual ? 'text-main' : 'text-main/40'}`}>Monthly</span>
               <button
                 onClick={() => handleBilling(!isAnnual)}
-                className="relative w-12 h-6 rounded-full bg-white/10 transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-400"
+                className="relative w-12 h-6 rounded-full bg-glass/10 transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-400"
                 role="switch"
                 aria-checked={isAnnual}
                 aria-label="Toggle annual billing"
               >
                 <div className={`absolute top-1 w-4 h-4 rounded-full transition-all duration-300 ${
-                  isAnnual ? 'left-7 bg-primary-400' : 'left-1 bg-white/50'
+                  isAnnual ? 'left-7 bg-primary-400' : 'left-1 bg-glass/50'
                 }`} />
               </button>
-              <span className={`text-sm font-medium transition-colors ${isAnnual ? 'text-white' : 'text-white/40'}`}>
+              <span className={`text-sm font-medium transition-colors ${isAnnual ? 'text-main' : 'text-main/40'}`}>
                 Annual
                 <span className="ml-1 text-xs text-glow-emerald">-20%</span>
               </span>

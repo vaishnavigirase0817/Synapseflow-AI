@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import ScrollReveal from '../common/ScrollReveal';
 import RippleButton from '../common/RippleButton';
 import { scrollToSection } from '../../hooks/useActiveSection';
@@ -38,6 +39,7 @@ const FOOTER_LINKS = {
  * Footer — Full-width footer with link columns, newsletter signup, social links, and copyright.
  */
 export default function Footer() {
+  const navigate = useNavigate();
   const [newsletterState, setNewsletterState] = useState('idle'); // idle, loading, success
   const [email, setEmail] = useState('');
 
@@ -51,7 +53,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="relative pt-20 pb-8 border-t border-white/[0.06]" role="contentinfo" id="footer">
+    <footer className="relative pt-20 pb-8 border-t border-glass/[0.06]" role="contentinfo" id="footer">
       <div className="section-container">
         {/* CTA Banner */}
         <ScrollReveal>
@@ -60,14 +62,14 @@ export default function Footer() {
             <div className="absolute inset-0 bg-gradient-to-br from-primary-500/10 via-accent-500/5 to-glow-cyan/10 pointer-events-none" />
 
             <div className="relative">
-              <h2 className="font-display font-bold text-2xl sm:text-3xl lg:text-4xl text-white mb-4">
+              <h2 className="font-display font-bold text-2xl sm:text-3xl lg:text-4xl text-main mb-4">
                 Ready to accelerate your business?
               </h2>
-              <p className="text-base text-white/50 max-w-lg mx-auto mb-8">
+              <p className="text-base text-main/50 max-w-lg mx-auto mb-8">
                 Join 2,400+ teams already transforming their workflows with SynapseFlow AI.
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-                <RippleButton variant="primary" ariaLabel="Start free trial" onClick={(e) => scrollToSection(e, 'pricing')}>
+                <RippleButton variant="primary" ariaLabel="Start free trial" onClick={() => navigate('/dashboard')}>
                   Start Free Trial
                   <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <path d="M5 12h14M12 5l7 7-7 7" />
@@ -96,11 +98,11 @@ export default function Footer() {
                   </svg>
                 </div>
               </div>
-              <span className="font-display font-bold text-lg text-white">
+              <span className="font-display font-bold text-lg text-main">
                 Synapse<span className="text-primary-400">Flow</span>
               </span>
             </a>
-            <p className="text-sm text-white/40 leading-relaxed mb-4">
+            <p className="text-sm text-main/40 leading-relaxed mb-4">
               Transform scattered business data into intelligent automated workflows powered by AI.
             </p>
 
@@ -110,7 +112,7 @@ export default function Footer() {
                 <a
                   key={social}
                   href={`#${social}`}
-                  className="w-9 h-9 rounded-lg bg-white/[0.04] border border-white/[0.06] flex items-center justify-center text-xs font-bold text-white/40 hover:text-white hover:bg-white/[0.08] hover:border-white/10 transition-all duration-300"
+                  className="w-9 h-9 rounded-lg bg-glass/[0.04] border border-glass/[0.06] flex items-center justify-center text-xs font-bold text-main/40 hover:text-main hover:bg-glass/[0.08] hover:border-glass/10 transition-all duration-300"
                   aria-label={`Follow us on ${social}`}
                 >
                   {social}
@@ -122,14 +124,14 @@ export default function Footer() {
           {/* Link columns */}
           {Object.entries(FOOTER_LINKS).map(([title, links]) => (
             <div key={title}>
-              <h4 className="font-display font-semibold text-sm text-white/70 mb-4">{title}</h4>
+              <h4 className="font-display font-semibold text-sm text-main/70 mb-4">{title}</h4>
               <ul className="space-y-2.5" role="list">
                 {links.map((link) => (
                   <li key={link.label}>
                     <a
                       href={`#${link.id}`}
                       onClick={(e) => scrollToSection(e, link.id)}
-                      className="text-sm text-white/35 hover:text-white/70 transition-colors duration-300 relative group inline-block"
+                      className="text-sm text-main/35 hover:text-main/70 transition-colors duration-300 relative group inline-block"
                     >
                       {link.label}
                       <span className="absolute bottom-0 left-0 w-0 h-px bg-primary-400/50 group-hover:w-full transition-all duration-300" />
@@ -142,12 +144,12 @@ export default function Footer() {
         </div>
 
         {/* Newsletter & Bottom bar */}
-        <div className="pt-12 border-t border-white/[0.06] flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-4">
+        <div className="pt-12 border-t border-glass/[0.06] flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-4">
           
           {/* Newsletter */}
           <div className="w-full max-w-md text-center lg:text-left">
-            <h4 className="font-display font-semibold text-sm text-white mb-2">Subscribe to our newsletter</h4>
-            <p className="text-xs text-white/40 mb-4">Get the latest AI automation tips and product updates.</p>
+            <h4 className="font-display font-semibold text-sm text-main mb-2">Subscribe to our newsletter</h4>
+            <p className="text-xs text-main/40 mb-4">Get the latest AI automation tips and product updates.</p>
             {newsletterState === 'success' ? (
               <div className="flex items-center gap-2 text-sm text-glow-emerald bg-glow-emerald/10 px-4 py-2.5 rounded-xl border border-glow-emerald/20 animate-fade-in">
                 <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -164,18 +166,18 @@ export default function Footer() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   disabled={newsletterState === 'loading'}
-                  className="w-full pl-4 pr-32 py-2.5 rounded-xl bg-white/[0.03] border border-white/[0.08] text-sm text-white placeholder-white/30 focus:outline-none focus:ring-2 focus:ring-primary-400/50 transition-all disabled:opacity-50"
+                  className="w-full pl-4 pr-32 py-2.5 rounded-xl bg-glass/[0.03] border border-glass/[0.08] text-sm text-main placeholder-main/30 focus:outline-none focus:ring-2 focus:ring-primary-400/50 transition-all disabled:opacity-50"
                   aria-label="Email address for newsletter"
                 />
                 <button
                   type="submit"
                   disabled={newsletterState === 'loading'}
-                  className={`absolute right-1 top-1 bottom-1 px-4 rounded-lg text-xs font-medium text-white transition-colors flex items-center justify-center ${
+                  className={`absolute right-1 top-1 bottom-1 px-4 rounded-lg text-xs font-medium text-main transition-colors flex items-center justify-center ${
                     newsletterState === 'loading' ? 'bg-primary-500/50 cursor-not-allowed' : 'bg-primary-600 hover:bg-primary-500'
                   }`}
                 >
                   {newsletterState === 'loading' ? (
-                    <svg className="animate-spin h-3 w-3 text-white" fill="none" viewBox="0 0 24 24">
+                    <svg className="animate-spin h-3 w-3 text-main" fill="none" viewBox="0 0 24 24">
                       <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                       <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                     </svg>
@@ -189,12 +191,12 @@ export default function Footer() {
 
           <div className="flex flex-col sm:flex-row items-center gap-4 lg:gap-8">
             <div className="flex items-center gap-4">
-              <span className="flex items-center gap-1.5 text-xs text-white/25">
+              <span className="flex items-center gap-1.5 text-xs text-main/25">
                 <span className="w-1.5 h-1.5 rounded-full bg-glow-emerald animate-pulse" />
                 All systems operational
               </span>
             </div>
-            <p className="text-xs text-white/25">
+            <p className="text-xs text-main/25">
               © {new Date().getFullYear()} SynapseFlow AI. All rights reserved.
             </p>
           </div>
