@@ -201,6 +201,7 @@ export default function DashboardPreview() {
                   <span className="text-primary-300 font-medium">3 new notifications:</span> Model accuracy improved to 99.1% • Weekly report ready • New team member joined
                 </p>
               </div>
+            </div>
             )}
           </div>
         </ScrollReveal>
